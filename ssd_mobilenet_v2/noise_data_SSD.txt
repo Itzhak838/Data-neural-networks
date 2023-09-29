@@ -1,0 +1,37 @@
+d_b_1 STD: 0.0 probability: 0.6018079
+d_b_1 STD: 0.1 probability: 0.46079168
+d_b_2 STD: 0.0 probability: 0.49454972
+d_b_2 STD: 0.5 probability: 0.41133878
+d_b_2 STD: 0.6 probability: 0.23342547
+d_b_7 STD: 0.0 probability: 0.5044714
+d_b_7 STD: 0.5 probability: 0.23084167
+d_b_7 STD: 0.6 probability: 0.28650394
+d_b_7 STD: 0.7 probability: 0.22773843
+d_b_8 STD: 0.0 probability: 0.56054354
+d_b_8 STD: 0.1 probability: 0.35327163
+d_b_10 STD: 0.5 probability: 0.19840734
+d_b_10 STD: 0.6 probability: 0.22659974
+d_g_1 STD: 0.0 probability: 0.6063272
+d_g_1 STD: 0.1 probability: 0.3856279
+d_g_1 STD: 0.2 probability: 0.3792632
+d_g_2 STD: 0.0 probability: 0.74115753
+d_g_2 STD: 0.1 probability: 0.64035195
+d_g_2 STD: 0.2 probability: 0.6363227
+d_g_2 STD: 0.6 probability: 0.30198753
+d_g_5 STD: 0.0 probability: 0.54614335
+d_g_8 STD: 0.0 probability: 0.7271846
+d_g_9 STD: 0.9 probability: 0.3156397
+d_r_3 STD: 0.0 probability: 0.3974467
+d_r_3 STD: 0.3 probability: 0.28486994
+d_r_3 STD: 0.4 probability: 0.29468244
+d_r_5 STD: 0.0 probability: 0.6035304
+d_r_5 STD: 0.1 probability: 0.4740405
+d_r_5 STD: 0.3 probability: 0.2958142
+d_r_6 STD: 0.0 probability: 0.42048398
+d_r_6 STD: 0.1 probability: 0.41990265
+d_r_6 STD: 0.4 probability: 0.2964634
+d_r_6 STD: 0.5 probability: 0.32884562
+d_r_7 STD: 0.0 probability: 0.38987473
+d_r_10 STD: 0.4 probability: 0.23001231
+
+These are the highest probabilities in each image (we use one central object)
