@@ -41,16 +41,22 @@ model_url = "https://tfhub.dev/tensorflow/ssd_mobilenet_v2/fpnlite_320x320/1"
 model = hub.load(model_url)
 l1 = ["d"]  # d: dog - loop path string
 l2 = ["b", "g", "r"]  # b: black, g: green, r: red - loop path string
-l3 = [1, 2]  # 1-10 - loop path numbers
-l4 = [0, 2, 4, 6, 8, 10]  # blur level - loop path numbers
+l3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # 1-10 - loop path numbers
+l4 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # standard deviation - blur level
 for i in l1:
     for j in l2:
         for k in l3:
             for m in l4:
-                path = "C:/Itzhak/BSc/4yr/Final_Project/Neural Network results/Blur/" + i + "_" + j + "_" + str(
-                    k) + "_" + str(m) + ".jpg"  # build the path to the image by lists
+                path = "C:/Itzhak/BSc/4yr/Final_Project/pythonProject/yolov8-silva/inference/images/data_all/" + i + "_" + j + "_" + str(k) + ".jpg"  # build the path to the image by lists
                 image_input = cv.imread(path)  # read the image by path
-                boxes_, classes_, scores_ = detect_objects(path)
+                if m == 0:  # if the blur level is 0, predict on the original image
+                    boxes_, classes_, scores_ = detect_objects(path)
+                else:  # if the blur level is not 0, predict on the blured image
+                    sigma = m  # standard deviation
+                    blurred = cv.GaussianBlur(image_input, (0, 0), sigmaX=sigma, sigmaY=sigma)
+                    wr_path = 'blurred.jpg'
+                    blurred_image = cv.imwrite(wr_path, blurred)
+                    boxes_, classes_, scores_ = detect_objects(wr_path)
                 # Display the image with bounding boxes
                 img = Image.open(path)
                 plt.imshow(img)

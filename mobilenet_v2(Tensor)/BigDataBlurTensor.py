@@ -1,6 +1,7 @@
 import tensorflow as tf
 import tensorflow_hub as hub
 import cv2 as cv
+
 # libraries for more options:
 # import math
 # from skimage.transform import resize
@@ -45,17 +46,23 @@ def predict_objects(image_path):
 
 l1 = ["d"]  # c: cat, d: dog - loop path string
 l2 = ["b", "g", "r"]  # b: black, g: green, r: red - loop path string
-l3 = [1, 2]  # 1-10 - loop path numbers
-l4 = [0, 2, 4, 6, 8, 10]  # compression ratio loop
+l3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # 1-10 - loop path numbers
+l4 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # standard deviation - blur level
 for i in l1:
     for j in l2:
         for k in l3:
             for m in l4:
-                image_b = "C:/Itzhak/BSc/4yr/Final_Project/Neural Network results/Blur/" + i + "_" + j + "_" + str(k) + "_" + str(m) + ".jpg"  # build the path to the image by lists
-
-                image_b_o = cv.imread(image_b)  # read the image by path
-                predicted_label_, predicted_probability_ = predict_objects(image_b)
-
+                image_b = 'C:\\Itzhak\\BSc\\4yr\\Final_Project\\pythonProject\\yolov8-silva\\inference\\images\\data_all\\' + i + "_" + j + "_" + str(
+                    k) + ".jpg"  # build the path to the image by lists
+                image_in = cv.imread(image_b)  # read the image by path
+                if m == 0:  # if the blur level is 0, predict on the original image
+                    predicted_label_, predicted_probability_ = predict_objects(image_b)
+                else:  # if the blur level is not 0, predict on the blured image
+                    sigma = m  # standard deviation
+                    blurred = cv.GaussianBlur(image_in, (0, 0), sigmaX=sigma, sigmaY=sigma)
+                    wr_path = 'blurred.jpg'
+                    blurred_image = cv.imwrite(wr_path, blurred)
+                    predicted_label_, predicted_probability_ = predict_objects(wr_path)
 
                 if i == "c":
                     file_load_path = 'cats.txt'
@@ -69,7 +76,8 @@ for i in l1:
                         line = line.strip()
                         if line == predicted_label_:
                             if i == "d":
-                                data_2_file = i + "_" + j + "_" + str(k) + "_" + str(m) + " " + str(predicted_probability_) + "\n"
+                                data_2_file = i + "_" + j + "_" + str(k) + "_" + str(m) + " " + str(
+                                    predicted_probability_) + "\n"
                                 with open("Blur_data.txt", "a") as file2:
                                     file2.write(data_2_file)
 
